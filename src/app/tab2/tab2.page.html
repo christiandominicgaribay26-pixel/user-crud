@@ -1,17 +1,67 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Products
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Products</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div class="ion-padding">
+
+    <ion-searchbar
+      placeholder="Search products"
+      [(ngModel)]="searchTerm">
+    </ion-searchbar>
+
+    <ion-segment [(ngModel)]="selectedCategory">
+      <ion-segment-button *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-refresher
+      slot="fixed"
+      pullFactor="0.8"
+      (ionRefresh)="refreshProducts($event)">
+      <ion-refresher-content
+        pullingText="Pull down to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing products...">
+      </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list *ngIf="filteredProducts.length; else noProducts">
+      <ion-item-sliding #slidingItem *ngFor="let product of filteredProducts">
+        <ion-item>
+          <ion-label>
+            <h2>{{ product.productName }}</h2>
+            <p>{{ product.category }} | {{ product.quantity }} in stock</p>
+            <p>{{ product.price | currency }}</p>
+          </ion-label>
+          <ion-button fill="clear" (click)="updateProduct(product)">Update</ion-button>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="deleteProduct(product.id, slidingItem)">Delete</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+    <ng-template #noProducts>
+      <ion-card>
+        <ion-card-content>
+          No products match your search.
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+
+  </div>
+
 </ion-content>

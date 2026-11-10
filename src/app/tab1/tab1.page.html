@@ -1,17 +1,70 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Add Product
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Add Product</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="ion-padding">
+
+    <ion-item>
+      <ion-input
+        label="Product name"
+        labelPlacement="stacked"
+        placeholder="Enter product name"
+        [(ngModel)]="newProduct.productName">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        label="Category"
+        labelPlacement="stacked"
+        [(ngModel)]="newProduct.category">
+        <ion-select-option value="Electronics">Electronics</ion-select-option>
+        <ion-select-option value="School">School</ion-select-option>
+        <ion-select-option value="Home">Home</ion-select-option>
+        <ion-select-option value="Other">Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Price"
+        labelPlacement="stacked"
+        type="number"
+        min="0"
+        placeholder="0.00"
+        [(ngModel)]="newProduct.price">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Quantity"
+        labelPlacement="stacked"
+        type="number"
+        min="0"
+        placeholder="1"
+        [(ngModel)]="newProduct.quantity">
+      </ion-input>
+    </ion-item>
+
+    <ion-button
+      expand="block"
+      (click)="addProduct()">
+      Add Product
+    </ion-button>
+
+  </div>
+
 </ion-content>
