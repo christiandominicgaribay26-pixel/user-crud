@@ -12,4 +12,5 @@ COPY . .
 
 EXPOSE 8100
 
-CMD ["ionic", "serve", "--host=0.0.0.0", "--port=8100", "--no-open"]
+# Pinalitan natin ito para direkta nang tawagin ang Angular CLI at i-bypass ang host check
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8100", "--disable-host-check", "--poll", "1000"]
