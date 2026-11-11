@@ -27,7 +27,7 @@ jobs:
         run: docker run -d --name ionic-crud --restart unless-stopped -p 8100:8100 ionic-firebase-crud
 
       - name: Verify app
-        shell: pwsh
+        shell: powershell
         run: |
           $success = $false
           for ($i = 1; $i -le 15; $i++) {
