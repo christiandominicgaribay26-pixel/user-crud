@@ -2,7 +2,7 @@ name: Deploy Ionic App Locally
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master, main ]  # Pinayagan natin pareho
   workflow_dispatch:
 
 permissions:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Ionic image
-        run: docker build -t ionic-firebase-crud .
+        run: docker build --no-cache -t ionic-firebase-crud .  # Idinagdag ang --no-cache
 
       - name: Remove previous container
         run: docker rm -f ionic-crud
