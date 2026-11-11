@@ -14,4 +14,4 @@ RUN npm run build
 
 EXPOSE 8100
 
-CMD ["http-server", "www", "-p", "8100", "-a", "0.0.0.0"]
+CMD ["npx", "serve", "-s", "www", "-l", "8100"]
